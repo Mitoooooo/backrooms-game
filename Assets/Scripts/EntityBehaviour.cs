@@ -21,7 +21,7 @@ public class EntityBehaviour : MonoBehaviour
     Transform playerTransform;
     public float minRangeSphere = 10f; // Minimum range to scan for walls
     public float maxRangeSphere = 20f; // Maximum range to scan for walls
-    public float caughtDistance = 10f;
+    public float caughtDistance = 5f;
     public string wallTag = "Wall"; // Tag for the wall objects
     private float changeToRoamingInterval;
     private float changeToChasingInterval;
@@ -120,7 +120,8 @@ public class EntityBehaviour : MonoBehaviour
     {
         if (!agent.hasPath && cameraDetector.entityDetection == true && transform.position != Vector3.zero)
         {
-            transform.position = Vector3.zero;
+            //transform.position = Vector3.zero;
+            transform.position = outOfSightPosition;
             targetWall = null;
             agent.ResetPath();
         }
@@ -327,6 +328,7 @@ public class EntityBehaviour : MonoBehaviour
             Vector3 spawnPosition = GetPositionBehindWall(spawnWall);
             transform.position = spawnPosition;
         }
+        cameraDetector.entityDetection = false;
     }
 
     public void MoveEntityChase()

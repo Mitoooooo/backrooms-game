@@ -69,8 +69,8 @@ public class PlayerMove : MonoBehaviour
 
         soundGenerator = GetComponent<FootstepGenerator>();  
 
-        spellCasterObject = GameObject.Find("SpellCaster");
-        spellCast = spellCasterObject.GetComponent<SpellCast>();
+        //spellCasterObject = GameObject.Find("SpellCaster");
+        //spellCast = spellCasterObject.GetComponent<SpellCast>();
 
         LockCursor();
 
