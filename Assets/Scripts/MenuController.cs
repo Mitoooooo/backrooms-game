@@ -1,5 +1,6 @@
 using Assets.Scripts;
 using System.Collections;
+using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Experimental.GlobalIllumination;
@@ -24,6 +25,8 @@ public class MenuController : MonoBehaviour
     private GameObject levelLoader;
     private LoadingScene loadingScene;
 
+    public NavMeshSurface navMeshSurface;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -36,6 +39,7 @@ public class MenuController : MonoBehaviour
         loadingScene = levelLoader.GetComponent<LoadingScene>();
 
         UnlockCursor();
+        BakeNavMesh();
     }
 
     // Update is called once per frame
@@ -125,5 +129,11 @@ public class MenuController : MonoBehaviour
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+    }
+
+    void BakeNavMesh()
+    {
+        navMeshSurface.BuildNavMesh();
+        //Debug.Log("NavMesh has been baked on the main surface.");
     }
 }
